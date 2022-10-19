@@ -1,0 +1,295 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This swagger was created by Cumulus International Co., Ltd. to be used to ssure Sign Ad-hoc in K2",
+    "version": "1.0.0",
+    "title": "Assure Sign Ad-hoc"
+  },
+  "host": "au.assuresign.net",
+  "basePath": "/api/documentnow/v3.7",
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "submit",
+      "description": ""
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/submit": {
+      "post": {
+        "tags": [
+          "submit"
+        ],
+        "operationId": "Assure Sign Ad-hoc",
+        "summary": "Assure Sign Ad-hoc",
+        "description": "no information given",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "TOKEN-API-KEY",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "searchText",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/return"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/documents"
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "envelope": {
+      "type": "object",
+      "properties": {
+        "cultureType": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "viewBehaviorType": {
+          "type": "string"
+        },
+        "notificationSettings": {
+          "$ref": "#/definitions/notificationSettings"
+        }
+      }
+    },
+    "notificationSettings": {
+      "type": "object",
+      "properties": {
+        "enableNotifications": {
+          "type": "boolean"
+        },
+        "addCustomRecipientsToEnvelopeComplete": {
+          "type": "boolean"
+        }
+      }
+    },
+    "signers": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "signatureStyle": {
+          "type": "string"
+        }
+      }
+    },
+    "documents": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "items": {
+            "$ref": "#/definitions/fields"
+          }
+        },
+        "file": {
+          "$ref": "#/definitions/file"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "file": {
+      "type": "object",
+      "properties": {
+        "fileToUpload": {
+          "$ref": "#/definitions/fileToUpload"
+        },
+        "extension": {
+          "type": "string"
+        }
+      }
+    },
+    "fileToUpload": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "format": "byte"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "parseDocument": {
+          "type": "boolean"
+        },
+        "dynamicDocumentVersion": {
+          "type": "string"
+        },
+        "initialPagesToParse": {
+          "type": "integer"
+        },
+        "finalPagesToParse": {
+          "type": "integer"
+        }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "certified": {
+          "type": "boolean"
+        },
+        "fieldType": {
+          "type": "string"
+        },
+        "inputType": {
+          "type": "string"
+        },
+        "instructions": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "$ref": "#/definitions/position"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "signatureType": {
+          "type": "string"
+        },
+        "signer": {
+          "type": "string"
+        },
+        "size": {
+          "$ref": "#/definitions/size"
+        },
+        "sourceGroup": {
+          "type": "string"
+        },
+        "signatureStyle": {
+          "type": "string"
+        },
+        "fontSize": {
+          "type": "integer"
+        },
+        "horizontalAlignment": {
+          "type": "string"
+        },
+        "signerInputType": {
+          "type": "string"
+        },
+        "verticalAlignment": {
+          "type": "string"
+        }
+      }
+    },
+    "position": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "size": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number"
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "envelopeID": {
+          "type": "string"
+        },
+        "authToken": {
+          "type": "string"
+        }
+      }
+    },
+    "messages": {
+      "type": "object",
+      "properties": {
+        "details": {
+          "type": "string"
+        },
+        "messageType": {
+          "type": "string"
+        }
+      }
+    },
+    "return": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "items": {
+            "$ref": "#/definitions/messages"
+          }
+        },
+        "result": {
+          "$ref": "#/definitions/result"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
