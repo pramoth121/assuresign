@@ -1,0 +1,357 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This swagger was created by Cumulus International Co., Ltd. to be used to ssure Sign Ad-hoc in K2",
+    "version": "1.0.0",
+    "title": "Assure Sign Ad-hoc"
+  },
+  "host": "au.assuresign.net",
+  "basePath": "/api/documentnow/v3.7",
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "submit",
+      "description": ""
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/submit": {
+      "post": {
+        "tags": [
+          "submit"
+        ],
+        "operationId": "Assure Sign Ad-hoc",
+        "summary": "Assure Sign Ad-hoc",
+        "description": "no information given",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "TOKEN-API-KEY",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "document",
+            "description": "document",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/content"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/return"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "envelope": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "cultureType": {
+          "type": "string",
+          "example": "en-US"
+        },
+        "expirationDate": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "viewBehaviorType": {
+          "type": "string",
+          "example": "view_All"
+        },
+        "notificationSettings": {
+          "$ref": "#/definitions/notificationSettings"
+        }
+      }
+    },
+    "notificationSettings": {
+      "type": "object",
+      "properties": {
+        "enableNotifications": {
+          "type": "boolean"
+        },
+        "addCustomRecipientsToEnvelopeComplete": {
+          "type": "boolean"
+        }
+      }
+    },
+    "signers": {
+      "required": [
+        "email",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "example": "First Signer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "signatureStyle": {
+          "type": "string",
+          "example": "drawn"
+        }
+      }
+    },
+    "documents": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "fields": {
+          "items": {
+            "$ref": "#/definitions/fields"
+          }
+        },
+        "file": {
+          "$ref": "#/definitions/file"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "file": {
+      "type": "object",
+      "properties": {
+        "fileToUpload": {
+          "$ref": "#/definitions/fileToUpload"
+        },
+        "extension": {
+          "type": "string",
+          "example": "pdf"
+        }
+      }
+    },
+    "fileToUpload": {
+      "required": [
+        "fileName",
+        "data"
+      ],
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "format": "byte"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "parseDocument": {
+          "type": "boolean",
+          "example": true
+        },
+        "dynamicDocumentVersion": {
+          "type": "string",
+          "example": "v2"
+        },
+        "initialPagesToParse": {
+          "type": "integer",
+          "example": 0
+        },
+        "finalPagesToParse": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "certified": {
+          "type": "boolean",
+          "example": true
+        },
+        "fieldType": {
+          "type": "string",
+          "example": "signature"
+        },
+        "inputType": {
+          "type": "string",
+          "example": "signatory"
+        },
+        "instructions": {
+          "type": "string",
+          "example": "Please sign by entering your full name."
+        },
+        "name": {
+          "type": "string",
+          "example": "Signature JotBlock"
+        },
+        "position": {
+          "$ref": "#/definitions/position"
+        },
+        "required": {
+          "type": "boolean",
+          "example": true
+        },
+        "signatureType": {
+          "type": "string",
+          "example": "Signature JotBlock"
+        },
+        "signer": {
+          "type": "string",
+          "example": "First Signer"
+        },
+        "size": {
+          "$ref": "#/definitions/size"
+        },
+        "sourceGroup": {
+          "type": "string",
+          "example": "SIGNATURE"
+        },
+        "signatureStyle": {
+          "type": "string",
+          "example": "drawn"
+        },
+        "fontSize": {
+          "type": "integer",
+          "example": 10
+        },
+        "horizontalAlignment": {
+          "type": "string",
+          "example": "center"
+        },
+        "signerInputType": {
+          "type": "string",
+          "example": "free_Text"
+        },
+        "verticalAlignment": {
+          "type": "string",
+          "example": "middle"
+        }
+      }
+    },
+    "position": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "example": 0.27
+        },
+        "y": {
+          "type": "number",
+          "example": 0.32
+        }
+      }
+    },
+    "size": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "number",
+          "example": 0.05
+        },
+        "width": {
+          "type": "number",
+          "example": 0.7
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "envelopeID": {
+          "type": "string"
+        },
+        "authToken": {
+          "type": "string"
+        }
+      }
+    },
+    "messages": {
+      "type": "object",
+      "properties": {
+        "details": {
+          "type": "string"
+        },
+        "messageType": {
+          "type": "string"
+        }
+      }
+    },
+    "return": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "items": {
+            "$ref": "#/definitions/messages"
+          }
+        },
+        "result": {
+          "$ref": "#/definitions/result"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "documents": {
+          "items": {
+            "$ref": "#/definitions/documents"
+          }
+        },
+        "envelope": {
+          "$ref": "#/definitions/envelope"
+        },
+        "signers": {
+          "items": {
+            "$ref": "#/definitions/signers"
+          }
+        }
+      }
+    }
+  }
+}
