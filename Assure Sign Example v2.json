@@ -35,7 +35,7 @@
             "description": "document",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/content"
+              "$ref": "#/definitions/request"
             }
           }
         ],
@@ -345,6 +345,14 @@
           "items": {
             "$ref": "#/definitions/signers"
           }
+        }
+      }
+    },
+    "request": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "$ref": "#/definitions/content"
         }
       }
     }
