@@ -30,11 +30,6 @@
         "description": "no information given",
         "parameters": [
           {
-            "in": "header",
-            "name": "TOKEN-API-KEY",
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "document",
             "description": "document",
