@@ -1,123 +1,217 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
-    "version": "1.0.0",
-    "title": "Swagger Petstore 2.0",
-    "termsOfService": "http://swagger.io/terms/",
-    "contact": {
-      "email": "apiteam@swagger.io"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    }
+    "title": "K2 Assure Sign Submit",
+    "description": "API for au.assuresign.net",
+    "version": "0.0.0"
   },
   "host": "au.assuresign.net",
-  "tags": [
-    {
-      "name": "pet",
-      "description": "Everything about your Pets",
-      "externalDocs": {
-        "description": "Find out more",
-        "url": "http://swagger.io"
-      }
-    },
-    {
-      "name": "store",
-      "description": "Access to Petstore orders"
-    },
-    {
-      "name": "user",
-      "description": "Operations about user",
-      "externalDocs": {
-        "description": "Find out more about our store",
-        "url": "http://swagger.io"
-      }
-    }
-  ],
+  "basePath": "/api/documentnow/v3.7",
   "schemes": [
-    "https",
-    "http"
+    "https"
   ],
   "paths": {
-    "/notificationRecipients": {
+    "/submit": {
       "post": {
         "tags": [
-          "Assure Sign"
+          "Web"
         ],
-        "summary": "uploads an image",
-        "description": "",
-        "operationId": "uploadFile",
+        "description": "Submit template",
+        "operationId": "SubmitTemplate",
         "consumes": [
-          "multipart/form-data"
+          "application/json"
         ],
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "Email",
-            "in": "formData",
-            "description": "Additional data to pass to server",
+            "name": "apiVersion",
+            "in": "query",
+            "description": "Api version",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "x-example": "3.7"
+          },
+          {
+            "name": "templateID",
+            "in": "query",
+            "description": "Template ID",
+            "required": true,
+            "type": "string",
+            "x-example": "c7eabd73-adf2-4b0e-9c12-ae39002640f5"
+          },
+          {
+            "name": "SignValues",
+            "in": "body",
+            "description": "Sign Values",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SignValues"
+              }
+            }
+          },
+          {
+            "name": "apiUsername",
+            "in": "header",
+            "description": "apiUsername",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "key",
+            "in": "header",
+            "description": "key",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "contextUsername",
+            "in": "header",
+            "description": "contextUsername",
+            "required": true,
+            "type": "string",
+            "x-example": ""
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "OK",
             "schema": {
-              "$ref": "#/definitions/ApiResponse"
+              "$ref": "#/definitions/SubmitResponse"
+            },
+            "examples": {
+              "application/json": {
+                "envelopeID": "d900d0a0-ada8-4231-830e-ae9c013c2d8e",
+                "httpResult": "OK"
+              }
             }
           }
         },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
+        "security": []
       }
-    }
-  },
-  "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-      "flow": "implicit",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    },
-    "api_key": {
-      "type": "apiKey",
-      "name": "api_key",
-      "in": "header"
     }
   },
   "definitions": {
-    "ApiResponse": {
-      "type": "object",
+    "Status": {
+      "description": "Model for Status",
+      "required": [
+        "id"
+      ],
       "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
+        "id": {
+          "type": "string",
+          "x-example": "00000000-0000-0000-0000-000000000000"
         },
-        "type": {
-          "type": "string"
+        "statusDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-example": "2022-05-21T19:03:10.023"
         },
-        "message": {
-          "type": "string"
+        "statusDateSpecified": {
+          "type": "boolean",
+          "x-example": "true"
+        },
+        "statusDetails": {
+          "type": "string",
+          "x-example": "Step 1"
+        },
+        "statusType": {
+          "type": "string",
+          "x-example": "signinG_STEP_PROGRESS"
+        },
+        "statusTypeSpecified": {
+          "type": "boolean",
+          "x-example": "true"
+        }
+      }
+    },
+    "DocumentList": {
+      "description": "Model for DocumentList",
+      "required": [
+        "documentID"
+      ],
+      "properties": {
+        "documentID": {
+          "type": "string",
+          "x-example": "4f66e907-2443-475e-ac3f-ae9c0139fa7b"
+        },
+        "name": {
+          "type": "string",
+          "x-example": "Safalo NDA Template"
+        },
+        "status": {
+          "$ref": "#/definitions/Status",
+          "x-example": "{\n  \"id\": \"00000000-0000-0000-0000-000000000000\",\n  \"statusDate\": \"2022-05-21T19:03:10.023\",\n  \"statusDateSpecified\": true,\n  \"statusType\": \"signinG_STEP_PROGRESS\",\n  \"statusTypeSpecified\": true,\n  \"statusDetails\": \"Step 1\"\n}"
+        }
+      }
+    },
+    "CheckEnvelopeStatus": {
+      "description": "Model for CheckEnvelopeStatus",
+      "required": [
+        "documentList"
+      ],
+      "properties": {
+        "documentList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DocumentList"
+          },
+          "x-example": "[\n  {\n    \"status\": {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"statusDate\": \"2022-05-21T19:03:10.023\",\n      \"statusDateSpecified\": true,\n      \"statusType\": \"signinG_STEP_PROGRESS\",\n      \"statusTypeSpecified\": true,\n      \"statusDetails\": \"Step 1\"\n    },\n    \"documentID\": \"4f66e907-2443-475e-ac3f-ae9c0139fa7b\",\n    \"name\": \"Safalo NDA Template\"\n  }\n]"
+        },
+        "envelopeID": {
+          "type": "string",
+          "x-example": "d8078402-ad5e-486f-9520-ae9c0139fa76"
+        },
+        "status": {
+          "type": "string",
+          "x-example": "iN_PROGRESS"
+        }
+      }
+    },
+    "SignValues": {
+      "description": "Model for SignValues",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-example": "Safalo Signer Name"
+        },
+        "value": {
+          "type": "string",
+          "x-example": "Andy Hayes"
+        }
+      }
+    },
+    "SubmitResponse": {
+      "description": "Model for SubmitResponse",
+      "required": [
+        "envelopeID"
+      ],
+      "properties": {
+        "envelopeID": {
+          "type": "string",
+          "x-example": "d900d0a0-ada8-4231-830e-ae9c013c2d8e"
+        },
+        "httpResult": {
+          "type": "string",
+          "x-example": "OK"
         }
       }
     }
   },
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
-  }
+  "securityDefinitions": {},
+  "security": [],
+  "tags": [
+    {
+      "name": "Web",
+      "description": "Operations about Web"
+    }
+  ]
 }
