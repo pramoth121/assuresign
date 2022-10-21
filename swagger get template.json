@@ -1,273 +1,193 @@
-{
-  "swagger": "2.0",
-  "info": {
-    "description": "This swagger was created by Cumulus International Co., Ltd. to be used to interface with KKU K2",
-    "version": "1.0.0",
-    "title": "Digital Signature Inferface",
-    "contact": {
-      "email": "pattarapong@cumulus.co.th"
-    }
-  },
-  "host": "au.assuresign.net",
-  "basePath": "/api/documentnow/v3.7",
-  "produces": [
-    "application/json"
-  ],
-  "tags": [
-    {
-      "name": "search",
-      "description": ""
-    }
-  ],
-  "schemes": [
-    "https"
-  ],
-  "paths": {
-    "/templates": {
-      "get": {
-        "tags": [
-          "search"
-        ],
-        "operationId": "searchBranches",
-        "summary": "Search NTB Branch",
-        "description": "no information given",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "token",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/return"
-            }
-          },
-          "400": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "401": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "searchResult": {
-      "type": "object",
-      "properties": {
-        "branch": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/branch"
-          }
-        },
-        "searchModel": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/searchModel"
-          }
-        }
-      }
-    },
-    "branch": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "branchCode": {
-          "type": "string"
-        },
-        "fullName": {
-          "type": "string"
-        },
-        "latitude": {
-          "type": "string"
-        },
-        "longitude": {
-          "type": "string"
-        },
-        "houseNumber": {
-          "type": "string"
-        },
-        "villageNumber": {
-          "type": "string"
-        },
-        "village": {
-          "type": "string"
-        },
-        "alley": {
-          "type": "string"
-        },
-        "road": {
-          "type": "string"
-        },
-        "nearbyPlace": {
-          "type": "string"
-        },
-        "postalCode": {
-          "type": "integer"
-        },
-        "email": {
-          "type": "string"
-        },
-        "openingDate": {
-          "type": "string"
-        },
-        "subdistrict": {
-          "$ref": "#/definitions/subdistrict"
-        },
-        "district": {
-          "$ref": "#/definitions/district"
-        },
-        "province": {
-          "$ref": "#/definitions/province"
-        },
-        "phoneNumber": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/phoneNumber"
-          }
-        },
-        "branchsSchedule": {
-          "type": "string"
-        }
-      }
-    },
-    "subdistrict": {
-      "type": "object",
-      "properties": {
-        "subdistrictName": {
-          "type": "string"
-        }
-      }
-    },
-    "district": {
-      "type": "object",
-      "properties": {
-        "districtName": {
-          "type": "string"
-        }
-      }
-    },
-    "province": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "provinceName": {
-          "type": "string"
-        }
-      }
-    },
-    "phoneNumber": {
-      "type": "object",
-      "properties": {
-        "phoneNumber": {
-          "type": "string"
-        },
-        "isDeleted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "searchModel": {
-      "type": "object",
-      "properties": {
-        "searchType": {
-          "type": "string"
-        },
-        "searchId": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          },
-          "uniqueItems": true
-        }
-      }
-    },
-    "owner": {
-      "type": "object",
-      "properties": {
-        "emailAddress": {
-          "type": "string"
-        },
-        "fullName": {
-          "type": "string"
-        }
-      }
-    },
-    "templates": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "owner": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/owner"
-          }
-        }
-      }
-    },
-    "result": {
-      "type": "object",
-      "properties": {
-        "templates": {
-          "$ref": "#/definitions/templates"
-        }
-      }
-    },
-    "messages": {
-      "type": "object",
-      "properties": {
-        "details": {
-          "type": "string"
-        },
-        "messageType": {
-          "type": "string"
-        }
-      }
-    },
-    "return": {
-      "type": "object",
-      "properties": {
-        "messages": {
-          "$ref": "#/definitions/messages"
-        },
-        "result": {
-          "$ref": "#/definitions/result"
-        }
-      }
-    },
-    "Error": {
-      "type": "object",
-      "properties": {
-        "errorCode": {
-          "type": "string"
-        },
-        "errorMessage": {
-          "type": "string"
-        }
-      }
-    }
-  }
-}
+swagger: '2.0'
+info:
+  description: >-
+    This swagger was created by Cumulus International Co., Ltd. to be used to
+    interface with KKU K2
+  version: 1.0.0
+  title: Digital Signature Inferface
+  contact:
+    email: pattarapong@cumulus.co.th
+host: au.assuresign.net
+basePath: /api/documentnow/v3.7
+produces:
+  - application/json
+tags:
+  - name: search
+    description: ''
+schemes:
+  - https
+paths:
+  /templates:
+    get:
+      tags:
+        - search
+      operationId: searchBranches
+      summary: Search NTB Branch
+      description: no information given
+      parameters:
+        - name: apiUsername
+          in: header
+          description: apiUsername
+          required: true
+          type: string
+          x-example: ''
+        - name: key
+          in: header
+          description: key
+          required: true
+          type: string
+          x-example: ''
+        - name: contextUsername
+          in: header
+          description: contextUsername
+          required: true
+          type: string
+          x-example: ''
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/return'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: ''
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  searchResult:
+    type: object
+    properties:
+      branch:
+        type: array
+        items:
+          $ref: '#/definitions/branch'
+      searchModel:
+        type: array
+        items:
+          $ref: '#/definitions/searchModel'
+  branch:
+    type: object
+    properties:
+      id:
+        type: integer
+      branchCode:
+        type: string
+      fullName:
+        type: string
+      latitude:
+        type: string
+      longitude:
+        type: string
+      houseNumber:
+        type: string
+      villageNumber:
+        type: string
+      village:
+        type: string
+      alley:
+        type: string
+      road:
+        type: string
+      nearbyPlace:
+        type: string
+      postalCode:
+        type: integer
+      email:
+        type: string
+      openingDate:
+        type: string
+      subdistrict:
+        $ref: '#/definitions/subdistrict'
+      district:
+        $ref: '#/definitions/district'
+      province:
+        $ref: '#/definitions/province'
+      phoneNumber:
+        type: array
+        items:
+          $ref: '#/definitions/phoneNumber'
+      branchsSchedule:
+        type: string
+  subdistrict:
+    type: object
+    properties:
+      subdistrictName:
+        type: string
+  district:
+    type: object
+    properties:
+      districtName:
+        type: string
+  province:
+    type: object
+    properties:
+      id:
+        type: integer
+      provinceName:
+        type: string
+  phoneNumber:
+    type: object
+    properties:
+      phoneNumber:
+        type: string
+      isDeleted:
+        type: boolean
+  searchModel:
+    type: object
+    properties:
+      searchType:
+        type: string
+      searchId:
+        type: array
+        items:
+          type: integer
+        uniqueItems: true
+  owner:
+    type: object
+    properties:
+      emailAddress:
+        type: string
+      fullName:
+        type: string
+  templates:
+    type: object
+    properties:
+      description:
+        type: string
+      owner:
+        type: array
+        items:
+          $ref: '#/definitions/owner'
+  result:
+    type: object
+    properties:
+      templates:
+        $ref: '#/definitions/templates'
+  messages:
+    type: object
+    properties:
+      details:
+        type: string
+      messageType:
+        type: string
+  return:
+    type: object
+    properties:
+      messages:
+        $ref: '#/definitions/messages'
+      result:
+        $ref: '#/definitions/result'
+  Error:
+    type: object
+    properties:
+      errorCode:
+        type: string
+      errorMessage:
+        type: string
