@@ -46,12 +46,6 @@
               "$ref": "#/definitions/return"
             }
           },
-          "0": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
           "400": {
             "description": "",
             "schema": {
