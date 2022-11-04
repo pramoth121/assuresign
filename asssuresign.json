@@ -30,6 +30,11 @@
         "description": "no information given",
         "parameters": [
           {
+            "in": "header",
+            "name": "auth",
+            "type": "string"
+          },
+          {
             "in": "body",
             "name": "document",
             "description": "document",
