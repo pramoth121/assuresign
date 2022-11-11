@@ -172,8 +172,7 @@
       "type": "object",
       "properties": {
         "data": {
-          "type": "string",
-          "format": "binary"
+          "type": "file"
         },
         "fileName": {
           "type": "string"
