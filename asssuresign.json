@@ -44,10 +44,15 @@
             }
           }
         ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
-             "schema": {
+            "schema": {
               "$ref": "#/definitions/return"
             }
           },
@@ -368,6 +373,14 @@
           "$ref": "#/definitions/request"
         }
       }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Enter the token with the `Bearer: ` prefix, e.g. \"Bearer abcde12345\"."
     }
   }
 }
