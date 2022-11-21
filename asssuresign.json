@@ -30,11 +30,6 @@
         "description": "no information given",
         "parameters": [
           {
-            "in": "header",
-            "name": "auth",
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "document",
             "description": "document",
@@ -63,6 +58,12 @@
             }
           },
           "401": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
             "description": "",
             "schema": {
               "$ref": "#/definitions/Error"
