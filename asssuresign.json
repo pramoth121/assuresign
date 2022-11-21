@@ -30,6 +30,11 @@
         "description": "no information given",
         "parameters": [
           {
+            "in": "header",
+            "name": "UserContext",
+            "type": "string"
+          },
+          {
             "in": "body",
             "name": "document",
             "description": "document",
@@ -37,11 +42,6 @@
             "schema": {
               "$ref": "#/definitions/requestbody"
             }
-          }
-        ],
-        "security": [
-          {
-            "Bearer": []
           }
         ],
         "responses": {
