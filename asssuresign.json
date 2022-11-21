@@ -177,7 +177,7 @@
       "properties": {
         "data": {
           "type": "string",
-          "format": "byte"
+          "format": "base64"
         },
         "fileName": {
           "type": "string"
