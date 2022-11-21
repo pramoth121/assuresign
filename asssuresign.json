@@ -176,6 +176,7 @@
         "data"
       ],
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "data": {
           "type": "string",
